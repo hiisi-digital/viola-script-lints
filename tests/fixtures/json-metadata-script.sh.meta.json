@@ -1,0 +1,8 @@
+{
+  "id": "json-metadata",
+  "name": "JSON Metadata Script",
+  "description": "Script with JSON metadata",
+  "category": "correctness",
+  "impact": "major",
+  "extensions": [".json", ".yaml"]
+}

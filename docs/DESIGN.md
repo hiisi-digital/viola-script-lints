@@ -2,7 +2,9 @@
 
 ## Overview
 
-`@hiisi/viola-script-lints` is a plugin for the Viola convention linter that enables running arbitrary shell scripts as custom lints. This allows teams to add project-specific convention checks without writing TypeScript.
+`@hiisi/viola-script-lints` is a plugin for the Viola convention linter that enables running
+arbitrary shell scripts as custom lints. This allows teams to add project-specific convention checks
+without writing TypeScript.
 
 ## Purpose
 
@@ -276,19 +278,19 @@ viola-script-lints/
 interface ScriptLintsOptions {
   /** Directories to search for scripts (default: ["lints"]) */
   directories?: string[];
-  
+
   /** Explicit script paths to include */
   scripts?: string[];
-  
+
   /** File extensions to include (default: all) */
   extensions?: string[];
-  
+
   /** Timeout for script execution in ms (default: 30000) */
   timeout?: number;
-  
+
   /** Environment variables to pass to scripts */
   env?: Record<string, string>;
-  
+
   /** Working directory for scripts (default: project root) */
   cwd?: string;
 }
@@ -303,7 +305,7 @@ import { viola } from "@hiisi/viola";
 import scriptLints from "@hiisi/viola-script-lints";
 
 export default viola()
-  .use(scriptLints());  // Discovers scripts from lints/
+  .use(scriptLints()); // Discovers scripts from lints/
 ```
 
 ### Custom directories

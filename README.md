@@ -12,7 +12,9 @@
 
 ## What is this?
 
-`viola-script-lints` is a plugin for [Viola](https://github.com/hiisi-digital/viola) that enables running arbitrary shell scripts as custom convention lints. Write lints in bash, python, or any scripting language — no TypeScript required.
+`viola-script-lints` is a plugin for [Viola](https://github.com/hiisi-digital/viola) that enables
+running arbitrary shell scripts as custom convention lints. Write lints in bash, python, or any
+scripting language — no TypeScript required.
 
 ### Why Scripts?
 
@@ -82,7 +84,7 @@ import { viola } from "@hiisi/viola";
 import scriptLints from "@hiisi/viola-script-lints";
 
 export default viola()
-  .use(scriptLints());  // Discovers scripts from lints/
+  .use(scriptLints()); // Discovers scripts from lints/
 ```
 
 ### 3. Run
@@ -178,18 +180,18 @@ import scriptLints from "@hiisi/viola-script-lints";
 viola().use(scriptLints({
   // Directories to search for scripts (default: ["lints"])
   directories: ["lints", "custom-checks"],
-  
+
   // Explicit script paths to include
   scripts: ["scripts/special-check.sh"],
-  
+
   // Timeout for script execution in ms (default: 30000)
   timeout: 60000,
-  
+
   // Environment variables to pass to scripts
   env: {
     MY_VAR: "value",
   },
-  
+
   // Working directory for scripts (default: project root)
   cwd: ".",
 }));
@@ -308,7 +310,8 @@ Scripts are discovered from:
 
 Running scripts is code execution. Keep these practices in mind:
 
-1. **Only run scripts from trusted sources** — Scripts in your repo, not downloaded from the internet
+1. **Only run scripts from trusted sources** — Scripts in your repo, not downloaded from the
+   internet
 2. **Review scripts before adding** — Understand what they do
 3. **Use explicit script paths** — Instead of directory scanning when possible
 4. **Don't pass sensitive env vars** — Unless scripts specifically need them
@@ -326,17 +329,63 @@ The plugin handles script failures gracefully:
 
 Scripts that fail don't stop other linters from running.
 
+## Development
+
+### Running Tests
+
+Tests require several Deno permissions. Use the provided task:
+
+```bash
+deno task test
+```
+
+Or run directly with all required flags:
+
+```bash
+deno test --allow-read --allow-run --allow-write --allow-env --no-check
+```
+
+**Note:** Running `deno test` without flags will fail with permission errors. Always use
+`deno task test`.
+
+### Type Checking
+
+```bash
+deno task check
+```
+
+### Project Structure
+
+```
+src/
+├── types.ts          # Type definitions
+├── metadata.ts       # Script metadata extraction
+├── discovery.ts      # Script discovery logic
+├── executor.ts       # Script execution with I/O
+├── parser.ts         # JSON output parsing
+├── linter.ts         # ScriptLinter class
+└── plugin.ts         # Plugin factory
+
+tests/
+├── *_test.ts         # Unit and integration tests
+└── fixtures/         # Test fixture scripts
+
+examples/
+└── *.sh              # Example lint scripts
+```
+
 ## Support
 
-Whether you use this project, have learned something from it, or just like it,
-please consider supporting it by buying me a coffee, so I can dedicate more time
-on open-source projects like this :)
+Whether you use this project, have learned something from it, or just like it, please consider
+supporting it by buying me a coffee, so I can dedicate more time on open-source projects like this
+:)
 
 <a href="https://buymeacoffee.com/orgrinrt" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
 
 ## License
 
-> You can check out the full license [here](https://github.com/hiisi-digital/viola-script-lints/blob/main/LICENSE)
+> You can check out the full license
+> [here](https://github.com/hiisi-digital/viola-script-lints/blob/main/LICENSE)
 
 This project is licensed under the terms of the **Mozilla Public License 2.0**.
 

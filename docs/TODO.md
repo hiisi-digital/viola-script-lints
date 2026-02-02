@@ -5,6 +5,7 @@ Shell script runner plugin for the Viola convention linter.
 ## 📋 Phase 1: Foundation
 
 ### Project Setup
+
 - [ ] Initialize deno.json with package metadata
 - [ ] Set up imports for @hiisi/viola, @std/path, @std/fs
 - [ ] Create basic module structure
@@ -12,6 +13,7 @@ Shell script runner plugin for the Viola convention linter.
 - [ ] Write README.md with usage examples
 
 ### Type Definitions (`src/types.ts`)
+
 - [ ] Define ScriptLintsOptions interface
 - [ ] Define ScriptMetadata interface
 - [ ] Define ScriptIssue interface (JSON output format)
@@ -20,6 +22,7 @@ Shell script runner plugin for the Viola convention linter.
 ## 📋 Phase 2: Core Implementation
 
 ### Metadata Extraction (`src/metadata.ts`)
+
 - [ ] Parse header comments for @viola-lint marker
 - [ ] Extract @id, @name, @description from comments
 - [ ] Extract @category, @impact, @extensions
@@ -28,6 +31,7 @@ Shell script runner plugin for the Viola convention linter.
 - [ ] Validate required fields (id, name)
 
 ### Script Discovery (`src/discovery.ts`)
+
 - [ ] Scan configured directories for scripts
 - [ ] Filter by executable permission
 - [ ] Filter by @viola-lint marker or .meta.json
@@ -36,6 +40,7 @@ Shell script runner plugin for the Viola convention linter.
 - [ ] Deduplicate discovered scripts
 
 ### Script Execution (`src/executor.ts`)
+
 - [ ] Spawn script process
 - [ ] Pass file paths on stdin (one per line)
 - [ ] Capture stdout for JSON output
@@ -46,6 +51,7 @@ Shell script runner plugin for the Viola convention linter.
 - [ ] Set working directory
 
 ### Output Parsing (`src/parser.ts`)
+
 - [ ] Parse JSON array from stdout
 - [ ] Validate issue structure (kind, file, line, message)
 - [ ] Map script output to Viola Issue type
@@ -53,6 +59,7 @@ Shell script runner plugin for the Viola convention linter.
 - [ ] Report invalid JSON with helpful error
 
 ### ScriptLinter Class (`src/linter.ts`)
+
 - [ ] Extend BaseLinter
 - [ ] Generate meta from script metadata
 - [ ] Generate catalog from script metadata
@@ -60,6 +67,7 @@ Shell script runner plugin for the Viola convention linter.
 - [ ] Handle file filtering by extensions
 
 ### Plugin Implementation (`src/plugin.ts`)
+
 - [ ] Implement ViolaPlugin interface
 - [ ] Discover scripts during build()
 - [ ] Create ScriptLinter for each script
@@ -67,6 +75,7 @@ Shell script runner plugin for the Viola convention linter.
 - [ ] Support options (directories, scripts, timeout, env)
 
 ### Main Export (`mod.ts`)
+
 - [ ] Export plugin factory function
 - [ ] Export types for script authors
 - [ ] Export utility functions
@@ -74,12 +83,14 @@ Shell script runner plugin for the Viola convention linter.
 ## 📋 Phase 3: Testing
 
 ### Unit Tests
+
 - [ ] `tests/metadata_test.ts` - Header parsing, JSON loading
 - [ ] `tests/discovery_test.ts` - Directory scanning, filtering
 - [ ] `tests/executor_test.ts` - Process spawning, I/O
 - [ ] `tests/parser_test.ts` - JSON parsing, validation
 
 ### Test Fixtures
+
 - [ ] `tests/fixtures/valid-simple.sh` - Basic working script
 - [ ] `tests/fixtures/valid-metadata.sh` - Full metadata in comments
 - [ ] `tests/fixtures/valid-metadata.meta.json` - Companion JSON
@@ -90,6 +101,7 @@ Shell script runner plugin for the Viola convention linter.
 - [ ] `tests/fixtures/python-script.py` - Python example
 
 ### Integration Tests
+
 - [ ] `tests/integration_test.ts` - Full plugin workflow
 - [ ] Test with real viola config
 - [ ] Test script discovery from directories
@@ -99,6 +111,7 @@ Shell script runner plugin for the Viola convention linter.
 ## 📋 Phase 4: Documentation & Polish
 
 ### Documentation
+
 - [ ] Complete README with examples
 - [ ] Document script protocol (input/output)
 - [ ] Document metadata format
@@ -106,12 +119,14 @@ Shell script runner plugin for the Viola convention linter.
 - [ ] Document security considerations
 
 ### Example Scripts
+
 - [ ] `examples/no-console-log.sh` - grep-based check
 - [ ] `examples/package-private.sh` - jq-based JSON check
 - [ ] `examples/no-fixme.sh` - TODO/FIXME finder
 - [ ] `examples/file-naming.sh` - Naming convention check
 
 ### Polish
+
 - [ ] Ensure all tests pass
 - [ ] Type checking passes
 - [ ] Error messages are helpful
@@ -120,19 +135,23 @@ Shell script runner plugin for the Viola convention linter.
 ## 📋 Phase 5: Advanced Features (Future)
 
 ### Parallel Execution
+
 - [ ] Run multiple scripts in parallel
 - [ ] Configurable concurrency limit
 - [ ] Aggregate results
 
 ### Caching
+
 - [ ] Cache script metadata between runs
 - [ ] Invalidate on script modification
 
 ### Incremental Mode
+
 - [ ] Track which files changed
 - [ ] Only pass changed files to scripts
 
 ### Script Utilities
+
 - [ ] Helper library for bash scripts
 - [ ] JSON output helpers
 - [ ] File filtering helpers
@@ -147,9 +166,8 @@ Shell script runner plugin for the Viola convention linter.
 
 ### Script Protocol Summary
 
-**Input:** File paths on stdin, one per line
-**Output:** JSON array of issues on stdout
-**Exit:** 0 = success, non-zero = error
+**Input:** File paths on stdin, one per line **Output:** JSON array of issues on stdout **Exit:** 0
+= success, non-zero = error
 
 ### Issue JSON Format
 
