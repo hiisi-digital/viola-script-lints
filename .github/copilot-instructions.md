@@ -4,7 +4,8 @@ Shell script runner plugin for the Viola convention linter. Runtime: Deno (TypeS
 
 ## CRITICAL: Accessing @hiisi/viola Core Package
 
-The `@hiisi/viola` package contains all the types and utilities you need. It is NOT yet published to JSR, so you MUST access it via GitHub.
+The `@hiisi/viola` package contains all the types and utilities you need. It is NOT yet published to
+JSR, so you MUST access it via GitHub.
 
 ### Option 1: Use Git Import in deno.json (RECOMMENDED)
 
@@ -23,11 +24,13 @@ Update `deno.json` imports to use GitHub raw URL:
 
 You have access to the GitHub MCP server. Use it to read the viola core types:
 
-1. **Read linter types**: Use `get_file_contents` on `hiisi-digital/viola` repo, path `src/linters/types.ts`
+1. **Read linter types**: Use `get_file_contents` on `hiisi-digital/viola` repo, path
+   `src/linters/types.ts`
 2. **Read base linter**: Path `src/linters/base.ts`
 3. **Read plugin system**: Path `src/plugins/types.ts`
 
 Key files in the viola core repo (`hiisi-digital/viola`):
+
 - `src/linters/types.ts` - BaseLinter, LinterMeta, Issue, IssueCatalog
 - `src/linters/base.ts` - BaseLinter abstract class
 - `src/plugins/types.ts` - ViolaPlugin interface
@@ -36,11 +39,13 @@ Key files in the viola core repo (`hiisi-digital/viola`):
 
 ### DO NOT create stub types
 
-Do NOT create your own stub types for BaseLinter, Issue, etc. The real types exist in the viola repo - use the GitHub MCP server to read them, then use git imports.
+Do NOT create your own stub types for BaseLinter, Issue, etc. The real types exist in the viola
+repo - use the GitHub MCP server to read them, then use git imports.
 
 ## Project Context
 
 This package enables running arbitrary shell scripts as custom lints. It provides:
+
 - Script discovery from configurable directories
 - Script execution with standardized input/output protocol
 - Result parsing and conversion to Viola issues
@@ -118,6 +123,7 @@ Or via a companion `.meta.json` file:
 Scripts should be simple to write and debug. Don't make script authors jump through hoops.
 
 **Implications:**
+
 - Clear, simple protocol (stdin/stdout JSON)
 - Helpful error messages when scripts fail
 - Easy metadata format (comments or JSON)
@@ -130,6 +136,7 @@ Scripts should be simple to write and debug. Don't make script authors jump thro
 Invalid scripts should be skipped with warnings, not crash the linter.
 
 **Implications:**
+
 - Validate script output, don't trust it
 - Handle timeouts gracefully
 - Report parse errors with context
@@ -143,6 +150,7 @@ Invalid scripts should be skipped with warnings, not crash the linter.
 Be mindful that running scripts has security implications.
 
 **Implications:**
+
 - Only run scripts from configured directories
 - Validate file paths before passing to scripts
 - Document security considerations clearly
@@ -156,12 +164,14 @@ Be mindful that running scripts has security implications.
 Before writing ANY function, type, or utility, search the codebase. Equivalent code likely exists.
 
 **Implications:**
+
 - ALWAYS check what exists before implementing
 - Small helpers (3+ lines used twice) belong in shared modules
 - Check `@hiisi/viola` for utilities before writing new ones
 - Never write inline helpers - extract to shared location
 
 **Red Flags:**
+
 - Writing helper functions inside implementation files
 - Copy-pasting code between modules
 - Writing string/path utilities without checking viola core
@@ -173,6 +183,7 @@ Before writing ANY function, type, or utility, search the codebase. Equivalent c
 Tests encode the specification. Changing tests to pass defeats the purpose.
 
 **Implications:**
+
 - DESIGN.md must be accurate before coding
 - Tests written to fail initially
 - Never modify tests during implementation
@@ -183,6 +194,7 @@ Tests encode the specification. Changing tests to pass defeats the purpose.
 **Types live apart from implementation**
 
 **Implications:**
+
 - Type definitions in `src/types.ts`
 - Implementation modules use those types, never redefine them
 - If file exports both types AND logic, refactor immediately
@@ -194,6 +206,7 @@ Tests encode the specification. Changing tests to pass defeats the purpose.
 ScriptLinter wraps scripts to fit the Viola linter interface.
 
 **Implications:**
+
 - Generate LinterMeta from script metadata
 - Generate IssueCatalog from script metadata
 - Implement lint() to execute script and parse output
@@ -204,6 +217,7 @@ ScriptLinter wraps scripts to fit the Viola linter interface.
 **It's better to run fewer scripts correctly than more scripts incorrectly**
 
 **Implications:**
+
 - Handle edge cases gracefully with sensible defaults
 - Never crash on malformed script output - use error recovery
 - Return empty arrays for missing/invalid data
@@ -214,6 +228,7 @@ ScriptLinter wraps scripts to fit the Viola linter interface.
 **Tests use real script execution**
 
 **Implications:**
+
 - Create fixture scripts with real functionality
 - Run actual scripts in tests
 - Assert actual execution results
@@ -393,6 +408,7 @@ Only these dependencies should be used:
 - `@std/assert` - Testing
 
 **Import pattern in deno.json:**
+
 ```json
 {
   "name": "@hiisi/viola-script-lints",
@@ -412,13 +428,13 @@ Do not add new dependencies without explicit approval.
 
 ## Code Constraints
 
-| Rule | Limit | Reason |
-|------|-------|--------|
-| Max file size | 500 LOC (prefer <300) | Maintainability |
-| Max exports per file | ~5 | Single responsibility |
-| Function length | <50 LOC | Readability |
-| Script timeout | 30s default | Prevent hangs |
-| Output size | 10MB max | Memory safety |
+| Rule                 | Limit                 | Reason                |
+| -------------------- | --------------------- | --------------------- |
+| Max file size        | 500 LOC (prefer <300) | Maintainability       |
+| Max exports per file | ~5                    | Single responsibility |
+| Function length      | <50 LOC               | Readability           |
+| Script timeout       | 30s default           | Prevent hangs         |
+| Output size          | 10MB max              | Memory safety         |
 
 ## Key Implementation Details
 
@@ -428,42 +444,42 @@ Parse script headers for the `@viola-lint` marker and metadata fields:
 
 ```typescript
 function parseMetadataFromHeader(content: string): ScriptMetadata | null {
-  const lines = content.split('\n').slice(0, 20); // Check first 20 lines
-  
+  const lines = content.split("\n").slice(0, 20); // Check first 20 lines
+
   // Must have @viola-lint marker
-  if (!lines.some(line => line.includes('@viola-lint'))) {
+  if (!lines.some((line) => line.includes("@viola-lint"))) {
     return null;
   }
-  
+
   const metadata: Partial<ScriptMetadata> = {};
-  
+
   for (const line of lines) {
     const idMatch = line.match(/@id\s+(\S+)/);
     if (idMatch) metadata.id = idMatch[1];
-    
+
     const nameMatch = line.match(/@name\s+(.+)$/);
     if (nameMatch) metadata.name = nameMatch[1].trim();
-    
+
     const descMatch = line.match(/@description\s+(.+)$/);
     if (descMatch) metadata.description = descMatch[1].trim();
-    
+
     const catMatch = line.match(/@category\s+(\S+)/);
     if (catMatch) metadata.category = catMatch[1];
-    
+
     const impactMatch = line.match(/@impact\s+(\S+)/);
     if (impactMatch) metadata.impact = impactMatch[1];
-    
+
     const extMatch = line.match(/@extensions\s+(.+)$/);
     if (extMatch) {
-      metadata.extensions = extMatch[1].split(',').map(e => e.trim());
+      metadata.extensions = extMatch[1].split(",").map((e) => e.trim());
     }
   }
-  
+
   // id and name are required
   if (!metadata.id || !metadata.name) {
     return null;
   }
-  
+
   return metadata as ScriptMetadata;
 }
 ```
@@ -476,7 +492,7 @@ Execute scripts with proper I/O handling:
 async function executeScript(
   scriptPath: string,
   files: string[],
-  options: ExecutionOptions
+  options: ExecutionOptions,
 ): Promise<ScriptResult> {
   const command = new Deno.Command(scriptPath, {
     stdin: "piped",
@@ -485,23 +501,23 @@ async function executeScript(
     cwd: options.cwd,
     env: options.env,
   });
-  
+
   const process = command.spawn();
-  
+
   // Write file paths to stdin
   const writer = process.stdin.getWriter();
-  await writer.write(new TextEncoder().encode(files.join('\n')));
+  await writer.write(new TextEncoder().encode(files.join("\n")));
   await writer.close();
-  
+
   // Set up timeout
   const timeoutId = setTimeout(() => {
     process.kill("SIGTERM");
   }, options.timeout);
-  
+
   try {
     const { code, stdout, stderr } = await process.output();
     clearTimeout(timeoutId);
-    
+
     return {
       exitCode: code,
       stdout: new TextDecoder().decode(stdout),
@@ -533,7 +549,7 @@ function parseScriptOutput(stdout: string, scriptId: string): Issue[] {
   if (!stdout.trim()) {
     return [];
   }
-  
+
   let parsed: unknown;
   try {
     parsed = JSON.parse(stdout);
@@ -541,15 +557,15 @@ function parseScriptOutput(stdout: string, scriptId: string): Issue[] {
     console.warn(`Script ${scriptId} produced invalid JSON output`);
     return [];
   }
-  
+
   if (!Array.isArray(parsed)) {
     console.warn(`Script ${scriptId} output is not an array`);
     return [];
   }
-  
+
   return parsed
     .filter(isValidScriptIssue)
-    .map(issue => ({
+    .map((issue) => ({
       kind: issue.kind,
       location: {
         file: issue.file,
@@ -563,13 +579,13 @@ function parseScriptOutput(stdout: string, scriptId: string): Issue[] {
 }
 
 function isValidScriptIssue(obj: unknown): obj is ScriptIssue {
-  if (typeof obj !== 'object' || obj === null) return false;
+  if (typeof obj !== "object" || obj === null) return false;
   const o = obj as Record<string, unknown>;
   return (
-    typeof o.kind === 'string' &&
-    typeof o.file === 'string' &&
-    typeof o.line === 'number' &&
-    typeof o.message === 'string'
+    typeof o.kind === "string" &&
+    typeof o.file === "string" &&
+    typeof o.line === "number" &&
+    typeof o.message === "string"
   );
 }
 ```
@@ -583,48 +599,46 @@ class ScriptLinter extends BaseLinter {
   private scriptPath: string;
   private scriptMeta: ScriptMetadata;
   private timeout: number;
-  
+
   constructor(scriptPath: string, meta: ScriptMetadata, timeout = 30000) {
     super();
     this.scriptPath = scriptPath;
     this.scriptMeta = meta;
     this.timeout = timeout;
   }
-  
+
   get meta(): LinterMeta {
     return {
       id: this.scriptMeta.id,
       name: this.scriptMeta.name,
-      description: this.scriptMeta.description ?? '',
-      category: this.scriptMeta.category ?? 'custom',
-      impact: this.scriptMeta.impact ?? 'minor',
+      description: this.scriptMeta.description ?? "",
+      category: this.scriptMeta.category ?? "custom",
+      impact: this.scriptMeta.impact ?? "minor",
     };
   }
-  
+
   get catalog(): IssueCatalog {
     // Scripts define their own issue kinds
     return {};
   }
-  
+
   async lint(codebase: Codebase, config: LinterConfig): Promise<Issue[]> {
     // Filter files by extensions if specified
-    let files = codebase.files.map(f => f.path);
+    let files = codebase.files.map((f) => f.path);
     if (this.scriptMeta.extensions?.length) {
-      files = files.filter(f => 
-        this.scriptMeta.extensions!.some(ext => f.endsWith(ext))
-      );
+      files = files.filter((f) => this.scriptMeta.extensions!.some((ext) => f.endsWith(ext)));
     }
-    
+
     if (files.length === 0) {
       return [];
     }
-    
+
     try {
       const result = await executeScript(this.scriptPath, files, {
         timeout: this.timeout,
         cwd: codebase.root,
       });
-      
+
       if (result.exitCode !== 0) {
         console.warn(`Script ${this.scriptMeta.id} exited with code ${result.exitCode}`);
         if (result.stderr) {
@@ -632,7 +646,7 @@ class ScriptLinter extends BaseLinter {
         }
         return [];
       }
-      
+
       return parseScriptOutput(result.stdout, this.scriptMeta.id);
     } catch (error) {
       console.error(`Script ${this.scriptMeta.id} failed: ${error}`);

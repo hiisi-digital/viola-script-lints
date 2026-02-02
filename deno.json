@@ -10,8 +10,11 @@
     "@std/assert": "jsr:@std/assert@^1"
   },
   "tasks": {
-    "test": "deno test --allow-read --allow-run",
+    "test": "deno test --allow-read --allow-run --allow-write --allow-env --no-check",
     "check": "deno check mod.ts"
+  },
+  "test": {
+    "include": ["tests/"]
   },
   "lint": {
     "rules": {
