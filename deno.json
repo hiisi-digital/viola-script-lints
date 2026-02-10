@@ -2,9 +2,21 @@
   "name": "@hiisi/viola-script-lints",
   "version": "0.1.0",
   "exports": "./mod.ts",
+  "publish": {
+    "include": [
+      "mod.ts",
+      "src/**/*.ts",
+      "README.md",
+      "LICENSE"
+    ],
+    "exclude": [
+      "src/**/*_test.ts",
+      "tests/**"
+    ]
+  },
   "imports": {
-    "@hiisi/viola": "https://raw.githubusercontent.com/hiisi-digital/viola/main/mod.ts",
-    "@hiisi/viola/linters": "https://raw.githubusercontent.com/hiisi-digital/viola/main/src/linters/mod.ts",
+    "@hiisi/viola": "jsr:@hiisi/viola@^0.1",
+    "@hiisi/viola/linters": "jsr:@hiisi/viola@^0.1/linters",
     "@std/path": "jsr:@std/path@^1",
     "@std/fs": "jsr:@std/fs@^1",
     "@std/assert": "jsr:@std/assert@^1"
