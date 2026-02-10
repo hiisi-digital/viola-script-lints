@@ -1,6 +1,6 @@
 {
   "name": "@hiisi/viola-script-lints",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "exports": "./mod.ts",
   "publish": {
     "include": [
@@ -26,11 +26,15 @@
     "check": "deno check mod.ts"
   },
   "test": {
-    "include": ["tests/"]
+    "include": [
+      "tests/"
+    ]
   },
   "lint": {
     "rules": {
-      "tags": ["recommended"]
+      "tags": [
+        "recommended"
+      ]
     }
   },
   "fmt": {
