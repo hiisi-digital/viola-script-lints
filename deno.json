@@ -15,8 +15,8 @@
     ]
   },
   "imports": {
-    "@hiisi/viola": "jsr:@hiisi/viola@^0.1",
-    "@hiisi/viola/linters": "jsr:@hiisi/viola@^0.1/linters",
+    "@hiisi/viola": "jsr:@hiisi/viola@^0.3.0",
+    "@hiisi/viola/linters": "jsr:@hiisi/viola@^0.3.0/linters",
     "@std/path": "jsr:@std/path@^1",
     "@std/fs": "jsr:@std/fs@^1",
     "@std/assert": "jsr:@std/assert@^1"
