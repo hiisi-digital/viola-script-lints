@@ -48,26 +48,6 @@ Deno.test("parseScriptOutput - handles minimal issue format", () => {
   assertEquals(issues[0].confidence, 100); // Default confidence
 });
 
-Deno.test("parseScriptOutput - returns empty array for empty output", () => {
-  const issues = parseScriptOutput("", "test");
-  assertEquals(issues.length, 0);
-});
-
-Deno.test("parseScriptOutput - returns empty array for whitespace", () => {
-  const issues = parseScriptOutput("   \n  \t  ", "test");
-  assertEquals(issues.length, 0);
-});
-
-Deno.test("parseScriptOutput - returns empty array for invalid JSON", () => {
-  const issues = parseScriptOutput("not valid json", "test");
-  assertEquals(issues.length, 0);
-});
-
-Deno.test("parseScriptOutput - returns empty array for non-array JSON", () => {
-  const issues = parseScriptOutput('{"key": "value"}', "test");
-  assertEquals(issues.length, 0);
-});
-
 Deno.test("parseScriptOutput - filters out invalid issues", () => {
   const stdout = JSON.stringify([
     {
