@@ -14,15 +14,15 @@
 
 `viola-script-lints` is a plugin for [Viola](https://github.com/hiisi-digital/viola) that enables
 running arbitrary shell scripts as custom convention lints. Write lints in bash, python, or any
-scripting language — no TypeScript required.
+scripting language. No TypeScript required.
 
 ### Why Scripts?
 
-- **Low barrier to entry** — Anyone who can write bash can write a lint
-- **Language agnostic** — Scripts can be bash, python, perl, whatever
-- **Project-specific** — Keep custom lints in your repo, not a separate package
-- **Rapid iteration** — No compile step, just edit and run
-- **Leverage existing tools** — Use grep, awk, jq, ripgrep, etc.
+- **Low barrier to entry**. Anyone who can write bash can write a lint.
+- **Language agnostic**. Scripts can be bash, python, perl, whatever.
+- **Project-specific**. Keep custom lints in your repo, not a separate package.
+- **Rapid iteration**. No compile step, just edit and run.
+- **Leverage existing tools**. Use grep, awk, jq, ripgrep, etc.
 
 ## Installation
 
@@ -127,9 +127,9 @@ Scripts output a JSON array of issues to stdout:
 
 ### Exit Codes
 
-- `0` — Success (may have found issues, but script ran correctly)
-- `1` — Script error (invalid input, crash, etc.)
-- `2` — Configuration error
+- `0`. Success (may have found issues, but script ran correctly).
+- `1`. Script error (invalid input, crash, etc.).
+- `2`. Configuration error.
 
 ## Script Metadata
 
@@ -161,16 +161,16 @@ Or via a companion `.meta.json` file:
 
 ### Required Fields
 
-- `@viola-lint` — Marker identifying this as a Viola lint script
-- `@id` — Unique identifier for the linter
-- `@name` — Human-readable name
+- `@viola-lint`. Marker identifying this as a Viola lint script.
+- `@id`. Unique identifier for the linter.
+- `@name`. Human-readable name.
 
 ### Optional Fields
 
-- `@description` — What the script checks
-- `@category` — Issue category (consistency, correctness, security, performance)
-- `@impact` — Issue severity (minor, major, critical)
-- `@extensions` — Comma-separated file extensions to check
+- `@description`. What the script checks.
+- `@category`. Issue category (consistency, correctness, security, performance).
+- `@impact`. Issue severity (minor, major, critical).
+- `@extensions`. Comma-separated file extensions to check.
 
 ## Configuration
 
@@ -310,22 +310,22 @@ Scripts are discovered from:
 
 Running scripts is code execution. Keep these practices in mind:
 
-1. **Only run scripts from trusted sources** — Scripts in your repo, not downloaded from the
-   internet
-2. **Review scripts before adding** — Understand what they do
-3. **Use explicit script paths** — Instead of directory scanning when possible
-4. **Don't pass sensitive env vars** — Unless scripts specifically need them
-5. **Set appropriate timeouts** — Prevent runaway scripts
+1. **Only run scripts from trusted sources**. Scripts in your repo, not downloaded from the
+   internet.
+2. **Review scripts before adding**. Understand what they do.
+3. **Use explicit script paths**. Instead of directory scanning when possible.
+4. **Don't pass sensitive env vars**. Unless scripts specifically need them.
+5. **Set appropriate timeouts**. Prevent runaway scripts.
 
 ## Error Handling
 
 The plugin handles script failures gracefully:
 
-- **Script not found** — Logged as warning, skipped
-- **Script not executable** — Logged as warning, skipped
-- **Script timeout** — Process killed, reported as error, no issues returned
-- **Invalid JSON output** — Parse error logged with raw output context
-- **Non-zero exit** — Logged as warning, no issues returned
+- **Script not found**. Logged as warning, skipped.
+- **Script not executable**. Logged as warning, skipped.
+- **Script timeout**. Process killed, reported as error, no issues returned.
+- **Invalid JSON output**. Parse error logged with raw output context.
+- **Non-zero exit**. Logged as warning, no issues returned.
 
 Scripts that fail don't stop other linters from running.
 
