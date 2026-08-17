@@ -87,6 +87,13 @@ export default viola()
   .use(scriptLints()); // Discovers scripts from lints/
 ```
 
+This call does not work against `@hiisi/viola` 0.3.0. `use()` accepts a plugin object carrying a
+`build(viola)` method, or a plugin function; `scriptLints()` returns `{ name, linters }` instead, so
+the call throws `Invalid plugin: expected an object with build() method or a function`. Loading the
+package through a plugin specifier instead is accepted and discovers zero linters, because the
+loader looks for an array of linter instances and this module exports a factory function. There is
+currently no working route from a viola config to these scripts.
+
 ### 3. Run
 
 ```bash
