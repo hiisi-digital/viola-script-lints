@@ -22,7 +22,7 @@ scripting language. No TypeScript required.
 - **Language agnostic**. Scripts can be bash, python, perl, whatever.
 - **Project-specific**. Keep custom lints in your repo, not a separate package.
 - **Rapid iteration**. No compile step, just edit and run.
-- **Leverage existing tools**. Use grep, awk, jq, ripgrep, etc.
+- **Existing tools**. Use grep, awk, jq, ripgrep, etc.
 
 ## Installation
 
@@ -127,9 +127,9 @@ Scripts output a JSON array of issues to stdout:
 
 ### Exit Codes
 
-- `0`. Success (may have found issues, but script ran correctly).
-- `1`. Script error (invalid input, crash, etc.).
-- `2`. Configuration error.
+- `0`. Success (may have found issues, but the script ran correctly).
+- Any non-zero code. Script failure (invalid input, crash, etc.). The plugin logs a warning and
+  discards the run's output. It does not distinguish one non-zero code from another.
 
 ## Script Metadata
 
@@ -146,7 +146,8 @@ Scripts declare metadata via header comments:
 # @extensions .ts,.tsx,.js,.jsx
 ```
 
-Or via a companion `.meta.json` file:
+Or via a companion `.meta.json` file, named by appending `.meta.json` to the full script filename
+(`my-custom-check.sh.meta.json` next to `my-custom-check.sh`):
 
 ```json
 {
@@ -319,13 +320,16 @@ Running scripts is code execution. Keep these practices in mind:
 
 ## Error Handling
 
-The plugin handles script failures gracefully:
+The plugin handles script failures without aborting the run:
 
-- **Script not found**. Logged as warning, skipped.
-- **Script not executable**. Logged as warning, skipped.
-- **Script timeout**. Process killed, reported as error, no issues returned.
-- **Invalid JSON output**. Parse error logged with raw output context.
-- **Non-zero exit**. Logged as warning, no issues returned.
+- **Script not found**. Skipped. Warned only for an explicitly listed path; a missing directory is
+  skipped silently.
+- **Script not executable**. Skipped. Warned only for an explicitly listed path; a non-executable
+  file found by directory scanning is skipped silently.
+- **Script timeout**. Process killed, warning logged, no issues returned.
+- **Invalid JSON output**. Warning logged with the parse error, no issues returned. An invalid entry
+  inside an otherwise valid array is logged with a 100-character excerpt and skipped.
+- **Non-zero exit**. Warning logged, no issues returned.
 
 Scripts that fail don't stop other linters from running.
 
