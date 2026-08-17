@@ -175,10 +175,14 @@ Or via a companion `.meta.json` file, named by appending `.meta.json` to the ful
 
 ### Optional Fields
 
-- `@description`. What the script checks.
-- `@category`. Issue category (consistency, correctness, security, performance).
-- `@impact`. Issue severity (minor, major, critical).
+- `@description`. What the script checks. Surfaces as the linter's description.
+- `@category`. Issue category. Parsed and stored, then unused.
+- `@impact`. Issue severity. Parsed and stored, then unused.
 - `@extensions`. Comma-separated file extensions to check.
+
+`@category` and `@impact` reach `ScriptMetadata` and stop there. A `ScriptLinter` reports an empty
+issue catalog, and Viola resolves an issue's category and impact from the reporting linter's catalog,
+so a rule written with `when.category` or `when.impact` never matches a script-reported issue.
 
 ## Configuration
 
