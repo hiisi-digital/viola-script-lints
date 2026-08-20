@@ -2,22 +2,21 @@
   "version": "5",
   "specifiers": {
     "jsr:@hiisi/flash-freeze@0.1": "0.1.1",
-    "jsr:@hiisi/viola@0.1": "0.1.5",
-    "jsr:@std/assert@1": "1.0.18",
-    "jsr:@std/fs@1": "1.0.22",
-    "jsr:@std/internal@^1.0.12": "1.0.12",
-    "jsr:@std/internal@^1.0.5": "1.0.12",
-    "jsr:@std/path@1": "1.1.4",
-    "jsr:@std/path@^1.0.8": "1.1.4",
-    "jsr:@std/path@^1.1.4": "1.1.4",
+    "jsr:@hiisi/viola@0.3": "0.3.0",
+    "jsr:@std/assert@1": "1.0.19",
+    "jsr:@std/fs@1": "1.0.24",
+    "jsr:@std/internal@^1.0.12": "1.0.14",
+    "jsr:@std/internal@^1.0.14": "1.0.14",
+    "jsr:@std/path@1": "1.1.6",
+    "jsr:@std/path@^1.1.5": "1.1.6",
     "npm:web-tree-sitter@0.22.6": "0.22.6"
   },
   "jsr": {
     "@hiisi/flash-freeze@0.1.1": {
       "integrity": "d47a7143f8f0497101b62faf466574577383add61960265d8fc3323f3c77c512"
     },
-    "@hiisi/viola@0.1.5": {
-      "integrity": "bb6a65db7bd36fc8e3f26cdc26cae2550d6c2e7722a1241187a72c40828a7982",
+    "@hiisi/viola@0.3.0": {
+      "integrity": "c15f41be2c3e4054b433caa7ea3f366d5baa10b3dc8af4249b6569296c57a19e",
       "dependencies": [
         "jsr:@hiisi/flash-freeze",
         "jsr:@std/fs",
@@ -25,41 +24,26 @@
         "npm:web-tree-sitter"
       ]
     },
-    "@std/assert@1.0.10": {
-      "integrity": "59b5cbac5bd55459a19045d95cc7c2ff787b4f8527c0dd195078ff6f9481fbb3",
-      "dependencies": [
-        "jsr:@std/internal@^1.0.5"
-      ]
-    },
-    "@std/assert@1.0.18": {
-      "integrity": "270245e9c2c13b446286de475131dc688ca9abcd94fc5db41d43a219b34d1c78",
+    "@std/assert@1.0.19": {
+      "integrity": "eaada96ee120cb980bc47e040f82814d786fe8162ecc53c91d8df60b8755991e",
       "dependencies": [
         "jsr:@std/internal@^1.0.12"
       ]
     },
-    "@std/fs@1.0.7": {
-      "integrity": "95ac7326e0e59089c979706e17bb28db03b5fb41c5a37c9c556788198b0662d6",
+    "@std/fs@1.0.24": {
+      "integrity": "f3061b45b81673a2bece689da041df32d174be064c89eb6397fb5718d3fb7877",
       "dependencies": [
-        "jsr:@std/path@^1.0.8"
+        "jsr:@std/internal@^1.0.14",
+        "jsr:@std/path@^1.1.5"
       ]
     },
-    "@std/fs@1.0.22": {
-      "integrity": "de0f277a58a867147a8a01bc1b181d0dfa80bfddba8c9cf2bacd6747bcec9308",
+    "@std/internal@1.0.14": {
+      "integrity": "291516b3d4c35024d6ffbc0a9df5bf4c64116e05b50012cf846710152d2ffdf7"
+    },
+    "@std/path@1.1.6": {
+      "integrity": "c68485c2a4dfbb5ae3cc74fae4e8c4e5d874cf8a8ed12927917235c758b46cbe",
       "dependencies": [
-        "jsr:@std/internal@^1.0.12",
-        "jsr:@std/path@^1.1.4"
-      ]
-    },
-    "@std/internal@1.0.12": {
-      "integrity": "972a634fd5bc34b242024402972cd5143eac68d8dffaca5eaa4dba30ce17b027"
-    },
-    "@std/path@1.0.8": {
-      "integrity": "548fa456bb6a04d3c1a1e7477986b6cffbce95102d0bb447c67c4ee70e0364be"
-    },
-    "@std/path@1.1.4": {
-      "integrity": "1d2d43f39efb1b42f0b1882a25486647cb851481862dc7313390b2bb044314b5",
-      "dependencies": [
-        "jsr:@std/internal@^1.0.12"
+        "jsr:@std/internal@^1.0.14"
       ]
     }
   },
@@ -68,59 +52,9 @@
       "integrity": "sha512-hS87TH71Zd6mGAmYCvlgxeGDjqd9GTeqXNqTT+u0Gs51uIozNIaaq/kUAbV/Zf56jb2ZOyG8BxZs2GG9wbLi6Q=="
     }
   },
-  "remote": {
-    "https://raw.githubusercontent.com/hiisi-digital/viola/main/mod.ts": "8e3c167be54aa11f7b24a54b6ef882b194d0646aaf8e8b55ffc4cb0d704ce2e2",
-    "https://raw.githubusercontent.com/hiisi-digital/viola/main/src/conditions/comparisons.ts": "ccbaea228c67ac2c9657ecd876c7db28610ade37cd66aefe47fd3f1be0d0d710",
-    "https://raw.githubusercontent.com/hiisi-digital/viola/main/src/conditions/mod.ts": "76508200b2d2ea2abf11b98dbf609af87834867e79a7c961125bd3d83eedc8ea",
-    "https://raw.githubusercontent.com/hiisi-digital/viola/main/src/conditions/types.ts": "fe2beee847f40d4c883aa4c034f74bc43e894d213a67084c5c006cb9fc2cd4c2",
-    "https://raw.githubusercontent.com/hiisi-digital/viola/main/src/conditions/when.ts": "ea89122a3ec5d3bb82c14b30b0a5993eb334378aa67a6198b5f596bd63839c5f",
-    "https://raw.githubusercontent.com/hiisi-digital/viola/main/src/config/actions.ts": "f1c2643e3f2df484512b7fe3b1368eaaeeb89eddf06dcb74de01fc268d15be9d",
-    "https://raw.githubusercontent.com/hiisi-digital/viola/main/src/config/builder.ts": "610e60c25b5ce893a6e1ec97e671ec4ac44d113f990a4adb0d6a62f9acb9d126",
-    "https://raw.githubusercontent.com/hiisi-digital/viola/main/src/config/conditions.ts": "e61155911ae5d225182214c50ab0e56f3a5dc77bef0397a1dc5bcbfeb0ee3b8e",
-    "https://raw.githubusercontent.com/hiisi-digital/viola/main/src/config/enums.ts": "8132cc308cb25ed9e05f6116dffa845fa36b32933e3700f5b3cbede559b4bfc4",
-    "https://raw.githubusercontent.com/hiisi-digital/viola/main/src/config/evaluator.ts": "4e049465da12335dbd6c14b6448feda8ac239b1b9c596d7a750c1d60c30d9348",
-    "https://raw.githubusercontent.com/hiisi-digital/viola/main/src/config/grammar-ref.ts": "f12493b9f9a9e2896565f33445d769560c2443523b57ce40885f0455b3271cf7",
-    "https://raw.githubusercontent.com/hiisi-digital/viola/main/src/config/loader.ts": "5ea314826ee4f408db081ecac0f649f83025860bc59d57c8e97d07575db38dde",
-    "https://raw.githubusercontent.com/hiisi-digital/viola/main/src/config/merge.ts": "7b1dc88f6d259b257edfeed12b66d7a0962c90129ad161c79dfe98ea12cfb0c3",
-    "https://raw.githubusercontent.com/hiisi-digital/viola/main/src/config/mod.ts": "7ac01a3a0c7fa37c168eca3d3312503f5d88e2558f0105ec4e3f985a7e7eefe4",
-    "https://raw.githubusercontent.com/hiisi-digital/viola/main/src/config/pattern.ts": "11cb5938eb4e27722f0db7f44e7bc4e83572de074e59cb9c6faa9c504b4c0241",
-    "https://raw.githubusercontent.com/hiisi-digital/viola/main/src/config/types.ts": "fe87d5b3099bf7d95c6b47f9d7239cd39db1bbd4d4b212ff5b469cd46c0dcb2d",
-    "https://raw.githubusercontent.com/hiisi-digital/viola/main/src/config/types/actions.types.ts": "2dab28879f7da56ec27f4f9fe779affeb1a4ca65842c5d5300544a99f35350c1",
-    "https://raw.githubusercontent.com/hiisi-digital/viola/main/src/config/types/builder.types.ts": "b34edb618db3b39a4abafb2119808dd3b3bb299914b1f4a7980ae989f0bde767",
-    "https://raw.githubusercontent.com/hiisi-digital/viola/main/src/config/types/conditions.types.ts": "9ddd52d91ead2462c142eac9f381109f704b2573542c7ba3a09f18bac6d22714",
-    "https://raw.githubusercontent.com/hiisi-digital/viola/main/src/config/types/evaluator.types.ts": "79e4e8f7a2ef9f8996390ad7c8fc9c53f71b2214d83c99be36e4bbb6f2752f16",
-    "https://raw.githubusercontent.com/hiisi-digital/viola/main/src/config/types/merge.types.ts": "7fe655e4260be9a3096f98a185f56b51d96b9da6d6529ad67b2277b3bffef127",
-    "https://raw.githubusercontent.com/hiisi-digital/viola/main/src/config/types/validate.types.ts": "06b6af9cb16d09f62849c7fc45f79e23f5c6c3b37be3910098c5c8105afc9273",
-    "https://raw.githubusercontent.com/hiisi-digital/viola/main/src/config/validate.ts": "0085070af75aa8080d706673c5a1be29c0b8cecb19d1bce328a81768ae143841",
-    "https://raw.githubusercontent.com/hiisi-digital/viola/main/src/data/mod.ts": "1101ed876f56361a103b945e885d36eea30c2d6b05b0920f6cb696895aa0ed01",
-    "https://raw.githubusercontent.com/hiisi-digital/viola/main/src/data/types.ts": "86300a4a7c4f66cf5a57fe9ce596ca8e03264c0c7d2efcf9f55aec941b195592",
-    "https://raw.githubusercontent.com/hiisi-digital/viola/main/src/grammars/extractor.ts": "ae9c440af6e7158487d86d2e5b4a04d7dccfaf65eba8e47205de57e4c5368944",
-    "https://raw.githubusercontent.com/hiisi-digital/viola/main/src/grammars/loader.ts": "16f5a94d3796553398a3caa9e632fd89909c63d747f286c720435636b38db745",
-    "https://raw.githubusercontent.com/hiisi-digital/viola/main/src/grammars/mod.ts": "dc5b5dcc3ba7fd2c5b459c6f706f8149c6efc8cc8c65d790511b8f059d5163b3",
-    "https://raw.githubusercontent.com/hiisi-digital/viola/main/src/grammars/query.ts": "babd77d93607538241342b4bde64f3d2619c19ff2bf5a78f7af0b66fff46b255",
-    "https://raw.githubusercontent.com/hiisi-digital/viola/main/src/grammars/registry.ts": "dc36c515b0110d75678e2e170ebec21260613259c7c68a5fe02e5544e2fb45bf",
-    "https://raw.githubusercontent.com/hiisi-digital/viola/main/src/grammars/resolver.ts": "5d2d4bb0417ab37c3e6181d52ffbb9435b5b3e43176ce1cba71e5d67f44b7968",
-    "https://raw.githubusercontent.com/hiisi-digital/viola/main/src/grammars/types.ts": "3d28ca4f674d80a51b7af921684f13c6a9465aa0028511cd3d551c3cdcccf9e4",
-    "https://raw.githubusercontent.com/hiisi-digital/viola/main/src/linters/base.ts": "0e848a4744f19790fd4b4743ee4689a5d45a4150e0c4491b7c9fd46dc28ae13d",
-    "https://raw.githubusercontent.com/hiisi-digital/viola/main/src/linters/mod.ts": "15e921e44b878118f25413d254a55bb3319c7ff793b154bbcfd582dfe900806c",
-    "https://raw.githubusercontent.com/hiisi-digital/viola/main/src/linters/registry.ts": "2f5691c1c3bed326c6081653df4b307b6e1a3ccdec0d47340d574a6af672c71b",
-    "https://raw.githubusercontent.com/hiisi-digital/viola/main/src/linters/types/base.types.ts": "43d7763a18b4cb6e2c0d6656aa7ebb62ee76b1e8380379de1300dc4dcf06001e",
-    "https://raw.githubusercontent.com/hiisi-digital/viola/main/src/linters/types/registry.types.ts": "2de0ee649581447453aae9b41a54740a1e10d37ac862633c52a71472ab2db9f6",
-    "https://raw.githubusercontent.com/hiisi-digital/viola/main/src/runtime/crawler.ts": "092c40da8e487b9e5572a0a95f2ed7723c00bfb511623314e2aa40a6bd5f2851",
-    "https://raw.githubusercontent.com/hiisi-digital/viola/main/src/runtime/mod.ts": "b2ebe4bb383168c4923b1d094521cd60d57d0795040c04d74eb1db42b159d41f",
-    "https://raw.githubusercontent.com/hiisi-digital/viola/main/src/runtime/plugins.ts": "ba0582b804efa52b887bac85f867bd3706673380d72df0f7ff2acc0907460220",
-    "https://raw.githubusercontent.com/hiisi-digital/viola/main/src/runtime/types/plugins.types.ts": "149959f5b5d0bbe1b1824959f757808f75ee003dbd03773569d1c84940905a81",
-    "https://raw.githubusercontent.com/hiisi-digital/viola/main/src/types/mod.ts": "f329fab43e98b4b5262f2a733f4333f23bd5eae8d3c0f0271875327af142de5c",
-    "https://raw.githubusercontent.com/hiisi-digital/viola/main/src/types/plugin.ts": "b7f66a7698aeb517b08ed463ab9d8428bfdfdab3d4adfba79004b76e024ce172",
-    "https://raw.githubusercontent.com/hiisi-digital/viola/main/src/utils/hash.ts": "475df70eeba90b14c6c1b60b705fb1f0a03fe0f763cf8d4f26463c69efa42ab4",
-    "https://raw.githubusercontent.com/hiisi-digital/viola/main/src/utils/mod.ts": "f585abcc8e2d599ba12484318571fca91a6d42a188ea562504c2a17d896e5160",
-    "https://raw.githubusercontent.com/hiisi-digital/viola/main/src/utils/similarity.ts": "a4e86f51b754b3c382da8bd760dc17a317eb9399bc2b7b783adcc83b81bfba20",
-    "https://raw.githubusercontent.com/hiisi-digital/viola/main/src/utils/types/hash.types.ts": "cf4c2ac6c90eefa52999048feee7ef0fbbedbb5fd20d64421f3063fc1dde877a",
-    "https://raw.githubusercontent.com/hiisi-digital/viola/main/src/utils/types/similarity.types.ts": "7ccc493d9bdd42ed1b511832c40e24b8a78f84acf32acf72650844800325bd99"
-  },
   "workspace": {
     "dependencies": [
-      "jsr:@hiisi/viola@0.1",
+      "jsr:@hiisi/viola@0.3",
       "jsr:@std/assert@1",
       "jsr:@std/fs@1",
       "jsr:@std/path@1"

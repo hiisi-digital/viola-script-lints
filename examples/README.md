@@ -139,8 +139,7 @@ src/components/Button.tsx
 **Exit Codes:**
 
 - `0` - Success (may have found issues, but script ran correctly)
-- `1` - Script error
-- `2` - Configuration error
+- Any non-zero code - Script failure; the plugin logs a warning and discards the run's output
 
 ### Required Metadata
 
@@ -173,7 +172,7 @@ results+=$(jq -n \
 1. **Always output valid JSON** - Even if no issues are found, output `[]`
 2. **Handle empty input** - Your script should handle receiving no files
 3. **Skip irrelevant files** - Filter files by extension or pattern
-4. **Use existing tools** - Leverage grep, awk, sed, jq, etc.
+4. **Use existing tools** - grep, awk, sed, jq, etc.
 5. **Exit 0 on success** - Only use non-zero exit codes for script errors
 6. **Avoid false positives** - Better to miss an issue than report incorrect ones
 
