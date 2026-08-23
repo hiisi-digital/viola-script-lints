@@ -26,7 +26,13 @@
  */
 
 // Re-export types for script authors
-export type { ScriptIssue, ScriptLintsOptions, ScriptMetadata, ScriptResult } from "./src/types.ts";
+export type {
+  ScriptIssue,
+  ScriptLintsOptions,
+  ScriptMetadata,
+  ScriptResult,
+  ViolaPlugin,
+} from "./src/types.ts";
 
 // Re-export plugin factory
 export { scriptLints, scriptLints as default } from "./src/plugin.ts";

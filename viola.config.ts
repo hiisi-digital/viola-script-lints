@@ -25,4 +25,17 @@ export default viola()
   // fixtures that are supposed to be wrong are the one exception, since being
   // wrong is their entire job.
   .rule(report.off, when.in("tests/compile_fail/**"))
-  .rule(report.off, when.in("**/fixtures/**"));
+  .rule(report.off, when.in("**/fixtures/**"))
+  // Three that are conventions rather than duplication.
+  //
+  // "Script " prefixes seven diagnostics across three files. That is the
+  // package's message convention, and hoisting it to a constant makes every
+  // message harder to read at its own call site to satisfy a counter.
+  //
+  // "piped" is Deno's own stdio literal and has to be written where the API
+  // takes it.
+  //
+  // "test" is a test's own subject word.
+  .set("duplicate-strings", {
+    ignoreStrings: ["Script ", "piped", "test"],
+  });

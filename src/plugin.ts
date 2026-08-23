@@ -5,7 +5,7 @@
  */
 
 import type { BaseLinter } from "@hiisi/viola/linters";
-import type { ScriptLintsOptions } from "./types.ts";
+import type { ScriptLintsOptions, ViolaPlugin } from "./types.ts";
 import { discoverScripts } from "./discovery.ts";
 import { ScriptLinter } from "./linter.ts";
 
@@ -17,18 +17,6 @@ const DEFAULT_OPTIONS: ScriptLintsOptions = {
   scripts: [],
   timeout: 30000,
 };
-
-/**
- * Viola plugin interface.
- */
-export interface ViolaPlugin {
-  /** Plugin name */
-  name: string;
-  /** Linter instances or factory functions */
-  linters?: BaseLinter[] | (() => BaseLinter[]) | (() => Promise<BaseLinter[]>);
-  /** Plugin initialization function */
-  setup?: () => void | Promise<void>;
-}
 
 /**
  * Create the script lints plugin.

@@ -181,8 +181,9 @@ Or via a companion `.meta.json` file, named by appending `.meta.json` to the ful
 - `@extensions`. Comma-separated file extensions to check.
 
 `@category` and `@impact` reach `ScriptMetadata` and stop there. A `ScriptLinter` reports an empty
-issue catalog, and Viola resolves an issue's category and impact from the reporting linter's catalog,
-so a rule written with `when.category` or `when.impact` never matches a script-reported issue.
+issue catalog, and Viola resolves an issue's category and impact from the reporting linter's
+catalog, so a rule written with `when.category` or `when.impact` never matches a script-reported
+issue.
 
 ## Configuration
 
