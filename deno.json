@@ -1,6 +1,6 @@
 {
   "name": "@hiisi/viola-script-lints",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Run shell scripts as custom lints for Viola.",
   "exports": "./mod.ts",
   "publish": {
