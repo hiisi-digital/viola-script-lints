@@ -1,3 +1,5 @@
+import type { BaseLinter } from "@hiisi/viola/linters";
+
 /**
  * Type definitions for viola-script-lints.
  *
@@ -133,4 +135,20 @@ export interface DiscoveredScript {
 
   /** Whether the script is executable */
   isExecutable: boolean;
+}
+
+/**
+ * What a viola plugin is.
+ *
+ * `scriptLints` returns one of these, so a consumer naming that return type
+ * needs this. It lived beside the factory and was exported from nowhere, which
+ * is why both `type-location` and `orphaned-code` pointed at it.
+ */
+export interface ViolaPlugin {
+  /** Plugin name */
+  name: string;
+  /** Linter instances or factory functions */
+  linters?: BaseLinter[] | (() => BaseLinter[]) | (() => Promise<BaseLinter[]>);
+  /** Plugin initialization function */
+  setup?: () => void | Promise<void>;
 }

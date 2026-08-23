@@ -9,6 +9,16 @@
 import type { ExecutionOptions, ScriptResult } from "./types.ts";
 
 /**
+ * The one place the timeout failure is worded.
+ *
+ * Both the success path and the catch have to raise it, and writing it twice
+ * is how the two drift apart.
+ */
+function timedOut(ms: number): Error {
+  return new Error(`Script execution timed out after ${ms}ms`);
+}
+
+/**
  * Execute a script with file paths on stdin.
  *
  * Spawns the script process, writes file paths to stdin (one per line),
@@ -62,7 +72,7 @@ export async function executeScript(
 
     // Check if process was killed due to timeout
     if (wasAborted) {
-      throw new Error(`Script execution timed out after ${options.timeout}ms`);
+      throw timedOut(options.timeout);
     }
 
     const decoder = new TextDecoder();
@@ -76,7 +86,7 @@ export async function executeScript(
 
     // If we aborted it, it's a timeout error
     if (wasAborted) {
-      throw new Error(`Script execution timed out after ${options.timeout}ms`);
+      throw timedOut(options.timeout);
     }
 
     throw new Error(`Script execution failed: ${error}`);
