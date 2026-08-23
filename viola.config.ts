@@ -18,7 +18,7 @@ export default viola()
   .add(typescript).as("typescript")
   // anything a linter is at all sure about is a failure. a warning is a
   // finding nobody acts on, and a gate that warns is not a gate.
-  .rule(report.error, when.confidence.atLeast(50))
+  .rule(report.error, when.confidence.atLeast(1))
   // tests are held to the same bar as source. a fixture that drifts is how a
   // suite stops measuring the thing it names.
   .rule(report.error, when.in("tests/**/*.ts"))
