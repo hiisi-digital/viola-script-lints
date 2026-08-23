@@ -50,7 +50,6 @@ export function scriptLints(options: ScriptLintsOptions = {}): ViolaPlugin {
       // TypeScript will show an error about ScriptLinter[] not being assignable
       // to BaseLinter[] due to the async methods, but this works at runtime because
       // Viola's runLinters() wraps linter.run() calls with Promise.resolve()
-      // @ts-expect-error - Async linters work with Viola's Promise.resolve() wrapper
       return discovered.map(
         (script) =>
           new ScriptLinter(script, {

@@ -65,7 +65,6 @@ export class ScriptLinter extends BaseLinter {
    * a synchronous method, but Viola's runLinters() wraps calls with Promise.resolve(),
    * so async methods work correctly in practice.
    */
-  // @ts-expect-error - Async override of sync method, but works with Viola's Promise.resolve() wrapper
   override async run(data: CodebaseData, config: LinterConfig): Promise<LinterResult> {
     const startTime = performance.now();
 
@@ -99,7 +98,6 @@ export class ScriptLinter extends BaseLinter {
    * Note: This is async and called only from our overridden async run() method.
    * The base BaseLinter.lint() is sync, but we override run() to handle async.
    */
-  // @ts-expect-error - Async override of sync method, but only called from our async run()
   override async lint(data: CodebaseData, _config: LinterConfig): Promise<Issue[]> {
     // Filter files by extensions if specified
     let files = data.files.map((f) => f.path);
