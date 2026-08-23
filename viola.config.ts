@@ -8,8 +8,8 @@
  * @module
  */
 
-import defaultLints from "jsr:@hiisi/viola-default-lints@^0.3.2";
-import typescript from "jsr:@hiisi/viola-grammar-ts@^0.3.2";
+import defaultLints from "@hiisi/viola-default-lints";
+import typescript from "@hiisi/viola-grammar-ts";
 import { report, viola, when } from "@hiisi/viola";
 
 export default viola()
@@ -38,4 +38,16 @@ export default viola()
   // "test" is a test's own subject word.
   .set("duplicate-strings", {
     ignoreStrings: ["Script ", "piped", "test"],
-  });
+  })
+  // a literal spelled out across several test cases is several tests each
+  // asserting its own expected value. counting those toward a duplication
+  // threshold asks for a shared constant, and a test comparing a constant to
+  // itself has stopped testing anything. they still show in the locations
+  // list, they just do not push a string over the threshold on their own.
+  .set("duplicate-strings.countIn", [
+    "**",
+    "!**/*_test.ts",
+    "!**/*.test.ts",
+    "!**/tests/**",
+    "!**/fixtures/**",
+  ]);
